@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" rx="64" fill="#120A22"/>
+  <circle cx="1100" cy="170" r="190" fill="#FF3EA5" opacity="0.18"/>
+  <circle cx="280" cy="720" r="260" fill="#8A4DFF" opacity="0.15"/>
+  <circle cx="980" cy="740" r="140" fill="#00E5FF" opacity="0.10"/>
+
+  <path d="M140 310 C 260 170, 420 480, 560 340 S 900 520, 1140 260" fill="none" stroke="#FF3EA5" stroke-width="14" stroke-linecap="round" opacity="0.55"/>
+  <path d="M160 430 C 300 290, 460 600, 620 460 S 940 640, 1240 380" fill="none" stroke="#8A4DFF" stroke-width="10" stroke-linecap="round" opacity="0.40"/>
+
+  <g opacity="0.85">
+    <rect x="860" y="210" width="390" height="470" rx="52" fill="#1A0E2E" stroke="#2B1A4A"/>
+    <rect x="900" y="260" width="310" height="210" rx="40" fill="#0F081A" stroke="#2B1A4A"/>
+    <circle cx="1055" cy="510" r="90" fill="#FF3EA5" opacity="0.12"/>
+    <circle cx="1100" cy="560" r="70" fill="#8A4DFF" opacity="0.14"/>
+    <path d="M930 590 C 1000 540, 1130 660, 1190 600" fill="none" stroke="#00E5FF" stroke-width="12" stroke-linecap="round" opacity="0.45"/>
+    <text x="900" y="725" font-family="ui-sans-serif, system-ui" font-size="26" fill="#EDE7FF" letter-spacing="1.2">NEON VIBES</text>
+  </g>
+
+  <g opacity="0.55">
+    <circle cx="112" cy="112" r="7" fill="#FF3EA5"/>
+    <circle cx="210" cy="164" r="6" fill="#8A4DFF"/>
+    <circle cx="260" cy="112" r="5" fill="#00E5FF"/>
+    <circle cx="1280" cy="130" r="6" fill="#8A4DFF"/>
+    <circle cx="1240" cy="190" r="5" fill="#FF3EA5"/>
+  </g>
+</svg>
