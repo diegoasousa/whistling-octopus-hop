@@ -118,6 +118,7 @@ export type OrderStatus = Order["status"];
 
 // Mercado Pago
 export type MercadoPagoPreference = {
+  preferenceId?: string;
   initPoint: string;
   sandboxInitPoint: string;
 };

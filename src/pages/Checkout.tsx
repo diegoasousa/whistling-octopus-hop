@@ -7,7 +7,11 @@ import { useMutation } from "@tanstack/react-query";
 import { CheckCircle2, CreditCard, Loader2 } from "lucide-react";
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
 
-import { createKtown4uOrder, processMercadoPagoPayment } from "@/lib/api";
+import {
+  createKtown4uOrder,
+  createMercadoPagoPreference,
+  processMercadoPagoPayment,
+} from "@/lib/api";
 import { formatBRL } from "@/lib/format";
 import { useCart } from "@/store/cart";
 import { Button } from "@/components/ui/button";
@@ -37,6 +41,7 @@ export default function CheckoutPage() {
   const navigate = useNavigate();
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [orderId, setOrderId] = useState<string | null>(null);
+  const [preferenceId, setPreferenceId] = useState<string | null>(null);
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
   const mpPublicKey = import.meta.env.VITE_MP_PUBLIC_KEY as string | undefined;
 
@@ -79,6 +84,16 @@ export default function CheckoutPage() {
 
   function getCpfDigits(value: string) {
     return value.replace(/\D/g, "");
+  }
+
+  function extractPreferenceIdFromUrl(url?: string) {
+    if (!url) return null;
+    try {
+      const parsed = new URL(url);
+      return parsed.searchParams.get("pref_id") ?? parsed.searchParams.get("preference_id");
+    } catch {
+      return null;
+    }
   }
 
   async function handleCepLookup(raw: string) {
@@ -136,7 +151,31 @@ export default function CheckoutPage() {
     },
     onSuccess: async (res) => {
       setOrderId(res.orderId);
-      setIsCreatingOrder(false);
+      try {
+        const pref = await createMercadoPagoPreference(res.orderId);
+        const resolvedPreferenceId =
+          pref.preferenceId ??
+          extractPreferenceIdFromUrl(pref.initPoint) ??
+          extractPreferenceIdFromUrl(pref.sandboxInitPoint);
+        setPreferenceId(resolvedPreferenceId ?? null);
+        if (!resolvedPreferenceId) {
+          toast({
+            title: "Preferência Mercado Pago não encontrada",
+            description:
+              "Carteira Mercado Pago e Linha de Crédito podem não aparecer sem preferenceId.",
+            variant: "destructive",
+          });
+        }
+      } catch (e) {
+        setPreferenceId(null);
+        toast({
+          title: "Não foi possível preparar a preferência Mercado Pago",
+          description: e instanceof Error ? e.message : "Tente novamente.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsCreatingOrder(false);
+      }
       toast({
         title: "Pedido criado!",
         description: `ID: ${res.orderId}`,
@@ -221,6 +260,7 @@ export default function CheckoutPage() {
           className="grid gap-4"
           onSubmit={handleSubmit(() => {
             setIsCreatingOrder(true);
+            setPreferenceId(null);
             createOrderMutation.mutate();
           })}
         >
@@ -414,6 +454,7 @@ export default function CheckoutPage() {
               initialization={{
                 amount: Number(subtotal.toFixed(2)),
                 payer,
+                ...(preferenceId ? { preferenceId } : {}),
               }}
               customization={{
                 visual: {
@@ -426,7 +467,18 @@ export default function CheckoutPage() {
                   debitCard: "all",
                   ticket: "all",
                   bankTransfer: "all",
+                  mercadoPago: "all",
                   maxInstallments: 12,
+                  types: {
+                    included: [
+                      "creditCard",
+                      "debitCard",
+                      "ticket",
+                      "bank_transfer",
+                      "wallet_purchase",
+                      "onboarding_credits",
+                    ],
+                  },
                 },
               }}
               onSubmit={async ({ formData }) => {
