@@ -1,4 +1,5 @@
-import { Sparkles, Heart, ShieldCheck, Truck } from "lucide-react";
+import { Heart, ShieldCheck, Truck } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
@@ -8,11 +9,11 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <span className="grid h-10 w-10 place-items-center rounded-2xl bg-primary/15 ring-1 ring-primary/25">
-                <Sparkles className="h-5 w-5 text-primary" />
+              <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-2xl ring-1 ring-border/60">
+                <img src="/kvibe-logo.jpeg" alt="K-Vibe" className="h-full w-full object-cover" />
               </span>
               <div>
-                <div className="text-sm font-semibold tracking-wide">Neon Fandom</div>
+                <div className="text-sm font-semibold tracking-wide">K-Vibe</div>
                 <div className="text-xs text-foreground/60">produtos estilo K-pop • sem marcas oficiais</div>
               </div>
             </div>
@@ -28,15 +29,19 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-primary" />
-              <span>Checkout via API REST (sem chaves no frontend)</span>
+              <Link to="/policies">Políticas da loja</Link>
             </div>
             <div className="flex items-center gap-2">
               <Truck className="h-4 w-4 text-primary" />
-              <span>Estrutura pronta para integrar com backend real</span>
+              <Link to="/shipping">Tipos de envio</Link>
             </div>
             <div className="flex items-center gap-2">
               <Heart className="h-4 w-4 text-primary" />
-              <span>Experiência mobile-first e dark mode</span>
+              <Link to="/contact">Fale conosco</Link>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-primary" />
+              <Link to="/privacy">Política de privacidade</Link>
             </div>
           </div>
 
@@ -54,7 +59,7 @@ export function Footer() {
         <Separator className="my-10 bg-border/60" />
 
         <div className="flex flex-col gap-2 text-xs text-foreground/55 md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} Neon Fandom. Frontend demo.</span>
+          <span>© {new Date().getFullYear()} K-Vibe. Frontend demo.</span>
           <span>Sem nomes de grupos, idols ou marcas oficiais.</span>
         </div>
       </div>

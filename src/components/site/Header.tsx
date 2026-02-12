@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { Sparkles, ShoppingBag, Menu, Search } from "lucide-react";
+import { ShoppingBag, Menu, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -32,28 +32,28 @@ function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
 }
 
 export function Header() {
-  const { count } = useCart();
+  const { totalItems } = useCart();
   const navigate = useNavigate();
   const [q, setQ] = useState("");
 
   const cartBadge = useMemo(() => {
-    if (!count) return null;
+    if (!totalItems) return null;
     return (
       <Badge className="pointer-events-none absolute -right-2 -top-2 rounded-full bg-primary text-primary-foreground">
-        {count}
+        {totalItems}
       </Badge>
     );
-  }, [count]);
+  }, [totalItems]);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur supports-[backdrop-filter]:bg-background/55">
       <div className="container flex h-16 items-center gap-3">
         <NavLink to="/" className="group flex items-center gap-2">
-          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-primary/15 ring-1 ring-primary/25 transition group-hover:bg-primary/20">
-            <Sparkles className="h-5 w-5 text-primary" />
+          <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-2xl ring-1 ring-border/60 transition group-hover:ring-primary/40">
+            <img src="/kvibe-logo.jpeg" alt="K-Vibe" className="h-full w-full object-cover" />
           </span>
           <div className="leading-tight">
-            <div className="text-sm font-semibold tracking-wide">Neon Fandom</div>
+            <div className="text-sm font-semibold tracking-wide">K-Vibe</div>
             <div className="text-xs text-foreground/60">storefront K-pop vibe</div>
           </div>
         </NavLink>
@@ -103,10 +103,14 @@ export function Header() {
             <SheetContent side="right" className="w-[320px] bg-background">
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2">
-                  <span className="grid h-9 w-9 place-items-center rounded-2xl bg-primary/15 ring-1 ring-primary/25">
-                    <Sparkles className="h-4 w-4 text-primary" />
+                  <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-2xl ring-1 ring-border/60">
+                    <img
+                      src="/kvibe-logo.jpeg"
+                      alt="K-Vibe"
+                      className="h-full w-full object-cover"
+                    />
                   </span>
-                  Neon Fandom
+                  K-Vibe
                 </SheetTitle>
               </SheetHeader>
 
@@ -142,7 +146,7 @@ export function Header() {
                   >
                     Carrinho
                     <span className="text-xs text-foreground/60">
-                      {count ? `${count} item(s)` : "vazio"}
+                      {totalItems ? `${totalItems} item(s)` : "vazio"}
                     </span>
                   </Button>
                 </div>

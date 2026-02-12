@@ -7,8 +7,8 @@ import { enableMockApi } from "@/mocks/enableMockApi";
 document.documentElement.classList.add("dark");
 (document.documentElement as HTMLElement).style.colorScheme = "dark";
 
-// Mock de API para desenvolvimento local
-if (import.meta.env.MODE === "development") {
+// Mock de API controlado por flag explícita
+if (import.meta.env.VITE_USE_MOCKS === "true") {
   enableMockApi();
 }
 

@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { SlidersHorizontal, ArrowUpDown } from "lucide-react";
 
-import { fetchProducts } from "@/lib/api";
+import { getProducts } from "@/lib/api";
 import type { Product, ProductsListResponse } from "@/types/api";
+import { getProductPriceCents } from "@/lib/products";
 import { ProductCard } from "@/components/products/ProductCard";
 import {
   ProductFilters,
@@ -26,14 +27,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/hooks/use-toast";
 
@@ -54,9 +47,11 @@ type SortMode = "recent" | "price_asc" | "price_desc";
 
 function sortItems(items: Product[], sort: SortMode) {
   const copy = [...items];
-  if (sort === "price_asc") return copy.sort((a, b) => a.price - b.price);
-  if (sort === "price_desc") return copy.sort((a, b) => b.price - a.price);
-  return copy.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  if (sort === "price_asc")
+    return copy.sort((a, b) => getProductPriceCents(a) - getProductPriceCents(b));
+  if (sort === "price_desc")
+    return copy.sort((a, b) => getProductPriceCents(b) - getProductPriceCents(a));
+  return copy.sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
 }
 
 function spToDraft(sp: URLSearchParams): ProductFiltersValue {
@@ -71,7 +66,7 @@ function spToDraft(sp: URLSearchParams): ProductFiltersValue {
 export default function ProductsPage() {
   const [sp, setSp] = useSearchParams();
 
-  const page = Math.max(Number(sp.get("page") ?? "1") || 1, 1);
+  const initialPage = Math.max(Number(sp.get("page") ?? "1") || 1, 1);
   const sort = (sp.get("sort") ?? "recent") as SortMode;
 
   const queryParams = useMemo(() => {
@@ -79,8 +74,8 @@ export default function ProductsPage() {
     const q = sp.get("q") || undefined;
     const minPrice = sp.get("minPrice") ? Number(sp.get("minPrice")) : undefined;
     const maxPrice = sp.get("maxPrice") ? Number(sp.get("maxPrice")) : undefined;
-    return { category, q, minPrice, maxPrice, page };
-  }, [sp, page]);
+    return { category, q, minPrice, maxPrice };
+  }, [sp]);
 
   const [draft, setDraft] = useState<ProductFiltersValue>(() => spToDraft(sp));
 
@@ -88,15 +83,61 @@ export default function ProductsPage() {
     setDraft(spToDraft(sp));
   }, [sp]);
 
-  const { data, isLoading, isError, error, refetch, isFetching } = useQuery({
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [sp]);
+
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    refetch,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: ["products", queryParams],
-    queryFn: () => fetchProducts(queryParams),
+    initialPageParam: initialPage,
+    queryFn: ({ pageParam }) => getProducts({ ...queryParams, page: pageParam }),
+    getNextPageParam: (lastPage, allPages) => {
+      const normalized = normalizeProducts(lastPage);
+      if (normalized.items.length === 0) {
+        return undefined;
+      }
+      return allPages.length + 1;
+    },
   });
 
-  const normalized = data ? normalizeProducts(data) : undefined;
+  const normalizedPages = useMemo(
+    () => data?.pages.map(normalizeProducts) ?? [],
+    [data?.pages],
+  );
   const items = useMemo(() => {
-    return sortItems(normalized?.items ?? [], sort);
-  }, [normalized?.items, sort]);
+    const merged = normalizedPages.flatMap((page) => page.items);
+    const seen = new Set<string>();
+    const unique = merged.filter((item) => {
+      if (!item.id) return true;
+      if (seen.has(item.id)) return false;
+      seen.add(item.id);
+      return true;
+    });
+    return sortItems(unique, sort);
+  }, [normalizedPages, sort]);
+
+  const categoryOptions = useMemo(() => {
+    const seen = new Set<string>();
+    const values: Array<{ value: string; label: string }> = [];
+    for (const item of items) {
+      const raw = (item.category ?? item.type) as string | undefined;
+      const value = typeof raw === "string" ? raw.trim() : "";
+      if (!value || seen.has(value)) continue;
+      seen.add(value);
+      values.push({ value, label: value });
+    }
+    return values;
+  }, [items]);
 
   function applyDraft() {
     const next = new URLSearchParams(sp);
@@ -125,13 +166,26 @@ export default function ProductsPage() {
     setSp(next);
   }
 
-  function goToPage(nextPage: number) {
-    const next = new URLSearchParams(sp);
-    next.set("page", String(nextPage));
-    setSp(next);
-  }
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
-  const totalPages = normalized?.totalPages ?? 1;
+  useEffect(() => {
+    const target = loadMoreRef.current;
+    if (!target) return;
+    if (!hasNextPage) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (!entry?.isIntersecting) return;
+        if (isFetchingNextPage || isFetching) return;
+        fetchNextPage();
+      },
+      { rootMargin: "200px" },
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [fetchNextPage, hasNextPage, isFetching, isFetchingNextPage]);
 
   return (
     <div className="space-y-6">
@@ -161,6 +215,7 @@ export default function ProductsPage() {
                   onChange={setDraft}
                   onApply={applyDraft}
                   onClear={clearAll}
+                  options={categoryOptions.length ? categoryOptions : undefined}
                 />
               </div>
             </SheetContent>
@@ -189,6 +244,7 @@ export default function ProductsPage() {
             onChange={setDraft}
             onApply={applyDraft}
             onClear={clearAll}
+            options={categoryOptions.length ? categoryOptions : undefined}
           />
         </Card>
 
@@ -234,61 +290,7 @@ export default function ProductsPage() {
               : items.map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
 
-          <div className="flex items-center justify-between rounded-3xl border border-border/60 bg-muted/20 px-4 py-3">
-            <div className="text-sm text-foreground/70">
-              {normalized
-                ? `${normalized.total} resultado(s) • página ${normalized.page} de ${normalized.totalPages}`
-                : "—"}
-              {isFetching && !isLoading ? (
-                <span className="ml-2 text-xs text-foreground/50">atualizando…</span>
-              ) : null}
-            </div>
-
-            <Pagination className="mx-0 w-auto">
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (page > 1) goToPage(page - 1);
-                    }}
-                    className="rounded-full"
-                  />
-                </PaginationItem>
-
-                {Array.from({ length: totalPages }).slice(0, 7).map((_, idx) => {
-                  const p = idx + 1;
-                  return (
-                    <PaginationItem key={p}>
-                      <PaginationLink
-                        href="#"
-                        isActive={p === page}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          goToPage(p);
-                        }}
-                        className="rounded-full"
-                      >
-                        {p}
-                      </PaginationLink>
-                    </PaginationItem>
-                  );
-                })}
-
-                <PaginationItem>
-                  <PaginationNext
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (page < totalPages) goToPage(page + 1);
-                    }}
-                    className="rounded-full"
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
+          <div ref={loadMoreRef} className="h-1" />
         </div>
       </div>
     </div>

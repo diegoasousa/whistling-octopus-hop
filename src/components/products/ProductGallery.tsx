@@ -10,12 +10,22 @@ import { cn } from "@/lib/utils";
 export function ProductGallery({
   images,
   name,
+  extra,
 }: {
   images: string[];
   name: string;
+  extra?: React.ReactNode;
 }) {
   const [api, setApi] = useState<CarouselApi>();
   const [active, setActive] = useState(0);
+
+  if (!images.length) {
+    return (
+      <div className="flex aspect-square items-center justify-center rounded-3xl border border-border/60 bg-muted/20 text-xs text-foreground/60">
+        Sem imagens
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-3">
@@ -62,6 +72,8 @@ export function ProductGallery({
           </button>
         ))}
       </div>
+
+      {extra ? <div className="space-y-3">{extra}</div> : null}
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export default function CartPage() {
-  const { items, subtotal, setQuantity, removeItem } = useCart();
+  const { items, subtotal, updateQty, removeItem } = useCart();
   const navigate = useNavigate();
 
   if (!items.length) {
@@ -82,7 +82,7 @@ export default function CartPage() {
                         variant="ghost"
                         className="h-10 w-10 rounded-2xl"
                         onClick={() =>
-                          setQuantity(item.productId, Math.max(1, item.quantity - 1))
+                          updateQty(item.productId, Math.max(1, item.quantity - 1))
                         }
                         aria-label="Diminuir quantidade"
                       >
@@ -95,7 +95,7 @@ export default function CartPage() {
                         variant="ghost"
                         className="h-10 w-10 rounded-2xl"
                         onClick={() =>
-                          setQuantity(item.productId, Math.min(99, item.quantity + 1))
+                          updateQty(item.productId, Math.min(99, item.quantity + 1))
                         }
                         aria-label="Aumentar quantidade"
                       >
@@ -129,7 +129,7 @@ export default function CartPage() {
           className="mt-6 h-12 w-full rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90"
           onClick={() => navigate("/checkout")}
         >
-          Finalizar compra
+          Comprar itens
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
 

@@ -24,11 +24,13 @@ export function ProductFilters({
   onChange,
   onApply,
   onClear,
+  options = CATEGORY_OPTIONS,
 }: {
   value: ProductFiltersValue;
   onChange: (next: ProductFiltersValue) => void;
   onApply: () => void;
   onClear: () => void;
+  options?: Array<{ value: string; label: string }>;
 }) {
   return (
     <div className="space-y-4">
@@ -64,7 +66,7 @@ export function ProductFilters({
           </SelectTrigger>
           <SelectContent className="rounded-2xl">
             <SelectItem value={ALL_VALUE}>Todas</SelectItem>
-            {CATEGORY_OPTIONS.map((c) => (
+            {options.map((c) => (
               <SelectItem key={c.value} value={c.value}>
                 {c.label}
               </SelectItem>

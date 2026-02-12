@@ -1,4 +1,4 @@
-import type { CreateOrderPayload, Product, ProductCategory } from "@/types/api";
+import type { OrderPayload, Product, ProductCategory } from "@/types/api";
 
 const PAGE_SIZE = 12;
 
@@ -43,7 +43,7 @@ function escapeXml(text: string) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
+    .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
 }
 
@@ -205,7 +205,7 @@ export function enableMockApi() {
       // POST /api/orders
       if (method === "POST" && url === "/api/orders") {
         const raw = init?.body ? JSON.parse(String(init.body)) : undefined;
-        const payload = raw as CreateOrderPayload;
+        const payload = raw as OrderPayload;
 
         if (!payload?.customer?.name || !payload?.customer?.email || !payload?.items?.length) {
           return jsonResponse({ message: "Pedido inválido" }, { status: 400 });
