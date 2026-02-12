@@ -448,9 +448,10 @@ export default function CheckoutPage() {
           </Button>
         </form>
 
-        {mpPublicKey && orderId ? (
+        {mpPublicKey && orderId && !isCreatingOrder ? (
           <div className="mt-6">
             <Payment
+              key={`payment-${orderId}-${preferenceId ?? "no-preference"}`}
               initialization={{
                 amount: Number(subtotal.toFixed(2)),
                 payer,
