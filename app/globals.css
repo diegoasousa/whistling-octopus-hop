@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand tokens (use as hsl(var(--brand-*)) ) */
+    --brand-pink: 321 95% 62%;
+    --brand-purple: 265 90% 62%;
+    --brand-cyan: 190 95% 55%;
+
+    /* Light (fallback) */
+    --background: 270 33% 98%;
+    --foreground: 250 28% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 250 28% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 250 28% 12%;
+
+    --primary: var(--brand-pink);
+    --primary-foreground: 255 25% 8%;
+
+    --secondary: 265 40% 92%;
+    --secondary-foreground: 250 28% 12%;
+
+    --muted: 265 30% 94%;
+    --muted-foreground: 248 14% 45%;
+
+    --accent: var(--brand-purple);
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 265 22% 88%;
+    --input: 265 22% 88%;
+    --ring: var(--brand-pink);
+
+    --radius: 1rem;
+
+    --sidebar-background: 270 33% 98%;
+    --sidebar-foreground: 250 28% 12%;
+
+    --sidebar-primary: var(--brand-purple);
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --sidebar-accent: 265 40% 92%;
+    --sidebar-accent-foreground: 250 28% 12%;
+
+    --sidebar-border: 265 22% 88%;
+    --sidebar-ring: var(--brand-pink);
+  }
+
+  .dark {
+    --background: 255 35% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 255 32% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 255 35% 9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: var(--brand-pink);
+    --primary-foreground: 255 25% 8%;
+
+    --secondary: 260 28% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 260 28% 14%;
+    --muted-foreground: 250 12% 74%;
+
+    --accent: var(--brand-purple);
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 34.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 260 24% 20%;
+    --input: 260 24% 20%;
+    --ring: var(--brand-pink);
+
+    --sidebar-background: 255 35% 8%;
+    --sidebar-foreground: 0 0% 98%;
+
+    --sidebar-primary: var(--brand-purple);
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --sidebar-accent: 260 28% 14%;
+    --sidebar-accent-foreground: 0 0% 98%;
+
+    --sidebar-border: 260 24% 20%;
+    --sidebar-ring: var(--brand-pink);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
