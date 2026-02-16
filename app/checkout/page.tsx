@@ -217,7 +217,7 @@ export default function CheckoutPage() {
       lastName,
       email: watchedEmail ?? "",
       identification: cpf ? { type: "CPF", number: cpf } : undefined,
-      address: watchedZip ? { zip_code: watchedZip } : undefined,
+      address: watchedZip ? { zipCode: watchedZip } : undefined,
     };
   }, [watchedName, watchedEmail, watchedDocument, watchedZip]);
 

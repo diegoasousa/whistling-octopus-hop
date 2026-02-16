@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { SlidersHorizontal, ArrowUpDown, Clock, Sparkles, LayoutGrid } from "lucide-react";
@@ -68,7 +68,7 @@ function spToDraft(sp: URLSearchParams): ProductFiltersValue {
   };
 }
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const sp = useMemo(() => new URLSearchParams(searchParams?.toString() || ''), [searchParams]);
 
@@ -342,5 +342,13 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense>
+      <ProductsContent />
+    </Suspense>
   );
 }

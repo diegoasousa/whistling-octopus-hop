@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
@@ -7,7 +8,7 @@ import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams?.get("external_reference") ?? searchParams?.get("merchant_order_id") ?? "";
 
@@ -36,5 +37,13 @@ export default function PaymentSuccessPage() {
         </Button>
       </div>
     </Card>
+  );
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense>
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }

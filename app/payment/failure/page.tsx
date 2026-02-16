@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { XCircle } from "lucide-react";
@@ -7,7 +8,7 @@ import { XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-export default function PaymentFailurePage() {
+function PaymentFailureContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams?.get("external_reference") ?? searchParams?.get("merchant_order_id") ?? "";
 
@@ -36,5 +37,13 @@ export default function PaymentFailurePage() {
         </Button>
       </div>
     </Card>
+  );
+}
+
+export default function PaymentFailurePage() {
+  return (
+    <Suspense>
+      <PaymentFailureContent />
+    </Suspense>
   );
 }
