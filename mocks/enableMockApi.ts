@@ -207,7 +207,7 @@ export function enableMockApi() {
         const raw = init?.body ? JSON.parse(String(init.body)) : undefined;
         const payload = raw as OrderPayload;
 
-        if (!payload?.customer?.name || !payload?.customer?.email || !payload?.items?.length) {
+        if (!payload?.customerName || !payload?.customerEmail || !payload?.items?.length) {
           return jsonResponse({ message: "Pedido inválido" }, { status: 400 });
         }
 

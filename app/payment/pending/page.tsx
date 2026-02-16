@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Clock } from "lucide-react";
@@ -7,7 +8,7 @@ import { Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-export default function PaymentPendingPage() {
+function PaymentPendingContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams?.get("external_reference") ?? searchParams?.get("merchant_order_id") ?? "";
 
@@ -36,5 +37,13 @@ export default function PaymentPendingPage() {
         </Button>
       </div>
     </Card>
+  );
+}
+
+export default function PaymentPendingPage() {
+  return (
+    <Suspense>
+      <PaymentPendingContent />
+    </Suspense>
   );
 }

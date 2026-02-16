@@ -20,10 +20,10 @@ export function ProductJsonLd({ product }: ProductJsonLdProps) {
     image: image ? [image] : undefined,
     description: product.description || `${title} - Produto oficial K-pop`,
     sku: product.id,
-    mpn: product.goodsNo || product.id,
+    mpn: product.id,
     brand: {
       '@type': 'Brand',
-      name: product.brand || 'Seoul Beat',
+      name: 'Seoul Beat',
     },
     offers: {
       '@type': 'Offer',
