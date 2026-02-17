@@ -18,8 +18,7 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-foreground/70">
-              Uma vitrine moderna para colecionáveis e acessórios inspirados na cultura
-              fandom.
+              Uma curadoria cuidadosa de álbuns, lightsticks e colecionáveis da cena K-pop global.
             </p>
           </div>
 
@@ -45,17 +44,11 @@ export function Footer() {
             </div>
           </div>
 
-          {process.env.NODE_ENV === 'development' && (
-            <div className="rounded-3xl border border-border/60 bg-muted/25 p-6">
-              <div className="text-xs font-semibold tracking-widest text-foreground/60">
-                NOTAS
-              </div>
-              <p className="mt-3 text-sm text-foreground/70">
-                Este projeto contém mock de API apenas para desenvolvimento local.
-                Em produção, basta apontar os mesmos endpoints para seu backend.
-              </p>
-            </div>
-          )}
+          <div className="rounded-3xl border border-border/60 bg-muted/25 p-6">
+            <p className="text-sm text-foreground/70">
+              Conectando o Brasil à cultura K-pop com curadoria, transparência e paixão genuína.
+            </p>
+          </div>
         </div>
 
         <Separator className="my-10 bg-border/60" />

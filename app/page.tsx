@@ -84,15 +84,12 @@ export default function HomePage() {
             </div>
 
             <h1 className="mt-4 max-w-xl text-3xl font-semibold tracking-tight md:text-5xl">
-              Produtos para o seu universo <span className="text-primary">fandom</span>, direto
-              da cena global do K-pop.
+              Produtos oficiais de <span className="text-primary">K-pop</span> com curadoria e entrega para todo o Brasil.
             </h1>
 
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-foreground/70 md:text-base">
-              Lightsticks, photocards, buttons e acessórios oficiais do universo K-pop —
-              selecionados diretamente de distribuidores internacionais. Todos os itens
-              contam para as métricas de venda dos artistas e seguem padrões oficiais de
-              comercialização, conectando você ao que realmente move o fandom.
+              Álbuns, lightsticks e photocards selecionados com curadoria direta da cena
+              global. Produtos oficiais, entrega para todo o Brasil.
             </p>
 
             <div className="mt-7 flex flex-col gap-2 sm:flex-row">
@@ -350,12 +347,11 @@ export default function HomePage() {
               SOBRE NÓS
             </div>
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-              Seoul Beat é a loja de quem vive o fandom com estilo e intenção.
+              Seoul Beat é a loja de quem leva a cultura K-pop a sério.
             </h2>
             <p className="text-sm leading-relaxed text-foreground/70 md:text-base">
-              Selecionamos álbuns, lightsticks, photocards e colecionáveis com curadoria
-              cuidadosa, informando cada etapa para você comprar com segurança e
-              transparência.
+              Selecionamos cada produto com critério, informamos cada etapa do processo
+              e garantimos uma experiência de compra clara, segura e conectada à cena original.
             </p>
             <p className="text-sm leading-relaxed text-foreground/70 md:text-base">
               Nosso foco é entregar uma experiência confiável, com suporte próximo e
