@@ -14,7 +14,7 @@ export function Footer() {
               </span>
               <div>
                 <div className="text-sm font-semibold tracking-wide">Seoul Beat</div>
-                <div className="text-xs text-foreground/60">produtos estilo K-pop • sem marcas oficiais</div>
+                <div className="text-xs text-foreground/60">Produtos oficiais importados da Coreia do Sul</div>
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-foreground/70">
@@ -45,22 +45,23 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-border/60 bg-muted/25 p-6">
-            <div className="text-xs font-semibold tracking-widest text-foreground/60">
-              NOTAS
+          {process.env.NODE_ENV === 'development' && (
+            <div className="rounded-3xl border border-border/60 bg-muted/25 p-6">
+              <div className="text-xs font-semibold tracking-widest text-foreground/60">
+                NOTAS
+              </div>
+              <p className="mt-3 text-sm text-foreground/70">
+                Este projeto contém mock de API apenas para desenvolvimento local.
+                Em produção, basta apontar os mesmos endpoints para seu backend.
+              </p>
             </div>
-            <p className="mt-3 text-sm text-foreground/70">
-              Este projeto contém mock de API apenas para desenvolvimento local.
-              Em produção, basta apontar os mesmos endpoints para seu backend.
-            </p>
-          </div>
+          )}
         </div>
 
         <Separator className="my-10 bg-border/60" />
 
-        <div className="flex flex-col gap-2 text-xs text-foreground/55 md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} Seoul Beat. Frontend demo.</span>
-          <span>Sem nomes de grupos, idols ou marcas oficiais.</span>
+        <div className="text-xs text-foreground/55">
+          <span>© {new Date().getFullYear()} Seoul Beat.</span>
         </div>
       </div>
     </footer>

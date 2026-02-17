@@ -175,77 +175,97 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="space-y-5">
-        <div className="flex items-end justify-between gap-4">
+      {preOrdersQuery.isLoading ? (
+        <section className="space-y-5">
           <div>
             <h2 className="text-xl font-semibold tracking-tight">Pre-vendas</h2>
             <p className="mt-1 text-sm text-foreground/70">
               Garanta os lançamentos antes de todo mundo.
             </p>
           </div>
-          <Button asChild variant="secondary" className="hidden rounded-2xl md:inline-flex">
-            <Link href="/products?releaseType=preOrder">Ver todas</Link>
-          </Button>
-        </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Card key={i} className="overflow-hidden rounded-3xl border-border/60 bg-card/60">
+                <div className="aspect-square w-full animate-pulse bg-muted/30" />
+                <div className="space-y-2 p-4">
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-muted/30" />
+                  <div className="h-4 w-1/2 animate-pulse rounded bg-muted/30" />
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+      ) : preOrderItems.length > 0 ? (
+        <section className="space-y-5">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-semibold tracking-tight">Pre-vendas</h2>
+              <p className="mt-1 text-sm text-foreground/70">
+                Garanta os lançamentos antes de todo mundo.
+              </p>
+            </div>
+            <Button asChild variant="secondary" className="hidden rounded-2xl md:inline-flex">
+              <Link href="/products?releaseType=preOrder">Ver todas</Link>
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {preOrderItems.slice(0, 8).map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+          <div className="md:hidden">
+            <Button asChild className="h-12 w-full rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link href="/products?releaseType=preOrder">Ver todas as pre-vendas</Link>
+            </Button>
+          </div>
+        </section>
+      ) : null}
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {preOrdersQuery.isLoading
-            ? Array.from({ length: 4 }).map((_, i) => (
-                <Card key={i} className="overflow-hidden rounded-3xl border-border/60 bg-card/60">
-                  <div className="aspect-square w-full animate-pulse bg-muted/30" />
-                  <div className="space-y-2 p-4">
-                    <div className="h-4 w-3/4 animate-pulse rounded bg-muted/30" />
-                    <div className="h-4 w-1/2 animate-pulse rounded bg-muted/30" />
-                  </div>
-                </Card>
-              ))
-            : preOrderItems.slice(0, 8).map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-        </div>
-
-        <div className="md:hidden">
-          <Button asChild className="h-12 w-full rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link href="/products?releaseType=preOrder">Ver todas as pre-vendas</Link>
-          </Button>
-        </div>
-      </section>
-
-      <section className="space-y-5">
-        <div className="flex items-end justify-between gap-4">
+      {newReleasesQuery.isLoading ? (
+        <section className="space-y-5">
           <div>
             <h2 className="text-xl font-semibold tracking-tight">Novos Lançamentos</h2>
             <p className="mt-1 text-sm text-foreground/70">
               Os álbuns e produtos mais recentes do K-pop.
             </p>
           </div>
-          <Button asChild variant="secondary" className="hidden rounded-2xl md:inline-flex">
-            <Link href="/products?releaseType=newRelease">Ver todos</Link>
-          </Button>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {newReleasesQuery.isLoading
-            ? Array.from({ length: 4 }).map((_, i) => (
-                <Card key={i} className="overflow-hidden rounded-3xl border-border/60 bg-card/60">
-                  <div className="aspect-square w-full animate-pulse bg-muted/30" />
-                  <div className="space-y-2 p-4">
-                    <div className="h-4 w-3/4 animate-pulse rounded bg-muted/30" />
-                    <div className="h-4 w-1/2 animate-pulse rounded bg-muted/30" />
-                  </div>
-                </Card>
-              ))
-            : newReleaseItems.slice(0, 8).map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-        </div>
-
-        <div className="md:hidden">
-          <Button asChild className="h-12 w-full rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link href="/products?releaseType=newRelease">Ver todos os lançamentos</Link>
-          </Button>
-        </div>
-      </section>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Card key={i} className="overflow-hidden rounded-3xl border-border/60 bg-card/60">
+                <div className="aspect-square w-full animate-pulse bg-muted/30" />
+                <div className="space-y-2 p-4">
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-muted/30" />
+                  <div className="h-4 w-1/2 animate-pulse rounded bg-muted/30" />
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+      ) : newReleaseItems.length > 0 ? (
+        <section className="space-y-5">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-semibold tracking-tight">Novos Lançamentos</h2>
+              <p className="mt-1 text-sm text-foreground/70">
+                Os álbuns e produtos mais recentes do K-pop.
+              </p>
+            </div>
+            <Button asChild variant="secondary" className="hidden rounded-2xl md:inline-flex">
+              <Link href="/products?releaseType=newRelease">Ver todos</Link>
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {newReleaseItems.slice(0, 8).map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+          <div className="md:hidden">
+            <Button asChild className="h-12 w-full rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link href="/products?releaseType=newRelease">Ver todos os lançamentos</Link>
+            </Button>
+          </div>
+        </section>
+      ) : null}
 
       <section className="space-y-5">
         <div className="flex items-end justify-between gap-4">
@@ -262,7 +282,7 @@ export default function HomePage() {
             {
               title: "Tipos de envio",
               icon: Truck,
-              href: "/shipping",
+              href: "/policies/shipping",
               body: [
                 "Envio internacional direto dos distribuidores.",
                 "Taxas aduaneiras já inclusas no valor final.",
