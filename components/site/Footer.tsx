@@ -33,7 +33,7 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <Truck className="h-4 w-4 text-primary" />
-              <Link href="/shipping">Tipos de envio</Link>
+              <Link href="/policies/shipping">Tipos de envio</Link>
             </div>
             <div className="flex items-center gap-2">
               <Heart className="h-4 w-4 text-primary" />
@@ -41,7 +41,7 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-primary" />
-              <Link href="/privacy">Política de privacidade</Link>
+              <Link href="/policies/privacy">Política de privacidade</Link>
             </div>
           </div>
 
