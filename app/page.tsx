@@ -125,8 +125,8 @@ export default function HomePage() {
 
         <Card className="overflow-hidden rounded-[2rem] border-border/60 bg-card/60">
           <img
-            src="/seoul-beat-logo.jpeg"
-            alt="Logo Seoul Beat"
+            src="/seoul-pulse-logo.png"
+            alt="Logo Seoul Pulse"
             className="h-full w-full object-contain p-8"
           />
         </Card>
@@ -347,7 +347,7 @@ export default function HomePage() {
               SOBRE NÓS
             </div>
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-              Seoul Beat é a loja de quem leva a cultura K-pop a sério.
+              Seoul Pulse é a loja de quem leva a cultura K-pop a sério.
             </h2>
             <p className="text-sm leading-relaxed text-foreground/70 md:text-base">
               Selecionamos cada produto com critério, informamos cada etapa do processo
@@ -362,8 +362,8 @@ export default function HomePage() {
 
         <Card className="overflow-hidden rounded-[2rem] border-border/60 bg-card/60">
           <img
-            src="/seoul-beat-logo.jpeg"
-            alt="Logo Seoul Beat"
+            src="/seoul-pulse-logo.png"
+            alt="Logo Seoul Pulse"
             className="h-full w-full object-contain p-8"
           />
         </Card>

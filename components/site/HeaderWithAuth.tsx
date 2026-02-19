@@ -74,10 +74,10 @@ export function Header() {
       <div className="container flex h-16 items-center gap-3">
         <Link href="/" className="group flex items-center gap-2">
           <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-2xl ring-1 ring-border/60 transition group-hover:ring-primary/40">
-            <img src="/seoul-beat-logo.jpeg" alt="Seoul Beat" className="h-full w-full object-cover" />
+            <img src="/seoul-pulse-logo.png" alt="Seoul Pulse" className="h-full w-full object-cover" />
           </span>
           <div className="leading-tight">
-            <div className="text-sm font-semibold tracking-wide">Seoul Beat</div>
+            <div className="text-sm font-semibold tracking-wide">Seoul Pulse</div>
             <div className="text-xs text-foreground/60">K-pop storefront</div>
           </div>
         </Link>
@@ -170,12 +170,12 @@ export function Header() {
                 <SheetTitle className="flex items-center gap-2">
                   <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-2xl ring-1 ring-border/60">
                     <img
-                      src="/seoul-beat-logo.jpeg"
-                      alt="Seoul Beat"
+                      src="/seoul-pulse-logo.png"
+                      alt="Seoul Pulse"
                       className="h-full w-full object-cover"
                     />
                   </span>
-                  Seoul Beat
+                  Seoul Pulse
                 </SheetTitle>
               </SheetHeader>
 

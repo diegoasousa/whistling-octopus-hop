@@ -11,7 +11,7 @@ export function ProductJsonLd({ product }: ProductJsonLdProps) {
   const title = getProductTitle(product);
   const priceCents = getProductPriceCents(product);
   const image = getProductPrimaryImage(product);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://seoulbeat.com.br';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://seoulpulse.com.br';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -23,7 +23,7 @@ export function ProductJsonLd({ product }: ProductJsonLdProps) {
     mpn: product.id,
     brand: {
       '@type': 'Brand',
-      name: 'Seoul Beat',
+      name: 'Seoul Pulse',
     },
     offers: {
       '@type': 'Offer',

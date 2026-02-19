@@ -10,10 +10,10 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-2xl ring-1 ring-border/60">
-                <img src="/seoul-beat-logo.jpeg" alt="Seoul Beat" className="h-full w-full object-cover" />
+                <img src="/seoul-pulse-logo.png" alt="Seoul Pulse" className="h-full w-full object-cover" />
               </span>
               <div>
-                <div className="text-sm font-semibold tracking-wide">Seoul Beat</div>
+                <div className="text-sm font-semibold tracking-wide">Seoul Pulse</div>
                 <div className="text-xs text-foreground/60">Produtos oficiais importados da Coreia do Sul</div>
               </div>
             </div>
@@ -54,7 +54,7 @@ export function Footer() {
         <Separator className="my-10 bg-border/60" />
 
         <div className="text-xs text-foreground/55">
-          <span>© {new Date().getFullYear()} Seoul Beat.</span>
+          <span>© {new Date().getFullYear()} Seoul Pulse.</span>
         </div>
       </div>
     </footer>

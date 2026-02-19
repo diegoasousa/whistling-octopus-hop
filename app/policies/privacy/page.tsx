@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
       <Card className="rounded-3xl border-border/60 bg-card/60 p-6">
         <h1 className="text-2xl font-semibold tracking-tight">Política de privacidade</h1>
         <p className="mt-2 text-sm text-foreground/70">
-          Esta política explica como a Seoul Beat coleta, usa e protege seus dados.
+          Esta política explica como a Seoul Pulse coleta, usa e protege seus dados.
         </p>
 
         <Separator className="my-6 bg-border/60" />
@@ -35,8 +35,8 @@ export default function PrivacyPolicyPage() {
               IDENTIFICAÇÃO
             </div>
             <div>
-              Seoul Beat — CNPJ 00.000.000/0000-00. Endereço: Rua Exemplo, 123, São Paulo/SP.
-              Telefone: (11) 99999-9999. Email: contato@seoulbeat.com.br.
+              Seoul Pulse — CNPJ 00.000.000/0000-00. Endereço: Rua Exemplo, 123, São Paulo/SP.
+              Telefone: (11) 99999-9999. Email: contato@seoulpulse.com.br.
             </div>
           </div>
 

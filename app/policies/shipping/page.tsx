@@ -24,7 +24,7 @@ export default function ShippingInfoPage() {
       <Card className="rounded-3xl border-border/60 bg-card/60 p-6">
         <h1 className="text-2xl font-semibold tracking-tight">Tipos de envio</h1>
         <p className="mt-2 text-sm text-foreground/70">
-          Na Seoul Beat, todos os envios são internacionais e seguem as regras de importação.
+          Na Seoul Pulse, todos os envios são internacionais e seguem as regras de importação.
         </p>
 
         <Separator className="my-6 bg-border/60" />
@@ -55,7 +55,7 @@ export default function ShippingInfoPage() {
               TAXAS INCLUSAS
             </div>
             <div>
-              As taxas aduaneiras já estão inclusas no valor pago na Seoul Beat. Não há cobranças
+              As taxas aduaneiras já estão inclusas no valor pago na Seoul Pulse. Não há cobranças
               adicionais após a compra.
             </div>
           </div>
