@@ -16,6 +16,7 @@ import {
   processMercadoPagoPayment,
 } from "@/lib/api";
 import { formatBRL } from "@/lib/format";
+import { computePixPrice, computeCreditVistaPrice } from "@/lib/products-mapper";
 import { useCart } from "@/store/cart";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -543,12 +544,19 @@ export default function CheckoutPage() {
         <Separator className="my-4 bg-border/60" />
 
         <div className="flex items-center justify-between text-sm">
-          <span className="text-foreground/70">Subtotal</span>
+          <span className="text-foreground/70">Parcelado (até 10x)</span>
           <span className="font-semibold">{formatBRL(subtotal)}</span>
         </div>
-
-        <div className="mt-2 text-xs text-foreground/55">
-          Frete será calculado pelo backend.
+        <div className="mt-1 flex items-center justify-between text-xs text-foreground/60">
+          <span>Cartão à vista</span>
+          <span>{formatBRL(computeCreditVistaPrice(subtotal))}</span>
+        </div>
+        <div className="mt-1 flex items-center justify-between text-xs font-medium text-emerald-400">
+          <span>PIX / Boleto</span>
+          <span>{formatBRL(computePixPrice(subtotal))}</span>
+        </div>
+        <div className="mt-3 text-xs text-foreground/50">
+          O valor final será aplicado conforme o método de pagamento escolhido abaixo.
         </div>
       </Card>
     </div>
