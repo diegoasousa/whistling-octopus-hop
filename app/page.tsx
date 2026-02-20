@@ -80,7 +80,7 @@ export default function HomePage() {
 
           <div className="relative">
             <div className="inline-flex items-center rounded-full border border-border/60 bg-muted/25 px-3 py-1 text-xs font-semibold tracking-widest text-foreground/70">
-              DARK STORE • K-POP VIBE
+              K-POP VIBE
             </div>
 
             <h1 className="mt-4 max-w-xl text-3xl font-semibold tracking-tight md:text-5xl">

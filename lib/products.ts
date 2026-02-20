@@ -14,6 +14,18 @@ export function getProductPriceCents(product: Product) {
   return 0;
 }
 
+/** Returns the lowest price in cents among all price fields (base, PIX, credit à vista). */
+export function getProductLowestPriceCents(product: Product) {
+  const candidates: number[] = [];
+  const base = getProductPriceCents(product);
+  if (base > 0) candidates.push(base);
+  if (typeof product.pixPriceCents === "number" && product.pixPriceCents > 0)
+    candidates.push(product.pixPriceCents);
+  if (typeof product.creditVistaPriceCents === "number" && product.creditVistaPriceCents > 0)
+    candidates.push(product.creditVistaPriceCents);
+  return candidates.length ? Math.min(...candidates) : 0;
+}
+
 export function getSortedImageUrls(images?: Product["images"]) {
   if (!images || images.length === 0) return [];
   if (typeof images[0] === "string") return images as string[];

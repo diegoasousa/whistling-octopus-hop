@@ -37,6 +37,10 @@ export default function ProductDetailPage() {
     return digits ? digits.join("") : "";
   }, [id]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   const [qty, setQty] = useState(1);
   const [selectedVariationId, setSelectedVariationId] = useState<string | null>(null);
 
