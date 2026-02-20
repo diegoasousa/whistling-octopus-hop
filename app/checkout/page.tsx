@@ -472,7 +472,7 @@ export default function CheckoutPage() {
                   ticket: "all",
                   bankTransfer: "all",
                   mercadoPago: "all",
-                  maxInstallments: 12,
+                  maxInstallments: 10,
                   types: {
                     included: [
                       "creditCard",

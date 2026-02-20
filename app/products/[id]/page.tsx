@@ -207,17 +207,32 @@ export default function ProductDetailPage() {
             {title}
           </h1>
 
-          <div className="mt-3 flex flex-wrap items-baseline gap-2">
-            <div className="text-3xl font-semibold text-primary">
-              {variationPrice ?? basePriceLabel}
+          <div className="mt-3 space-y-1">
+            <div className="flex flex-wrap items-baseline gap-2">
+              <div className="text-3xl font-semibold text-primary">
+                {variationPrice ?? basePriceLabel}
+              </div>
+              {variationPrice ? (
+                <div className="text-sm text-foreground/60">
+                  base {basePriceLabel}
+                </div>
+              ) : null}
+              {data.priceText ? (
+                <div className="text-sm text-foreground/60">{data.priceText}</div>
+              ) : null}
             </div>
-            {variationPrice ? (
+            <div className="text-sm text-foreground/60">
+              em até 10x de {formatBRL(basePriceCents / 100 / 10)} sem juros
+            </div>
+            {data.creditVistaPriceCents ? (
               <div className="text-sm text-foreground/60">
-                base {basePriceLabel}
+                {formatBRL(data.creditVistaPriceCents / 100)} no cartão à vista
               </div>
             ) : null}
-            {data.priceText ? (
-              <div className="text-sm text-foreground/60">{data.priceText}</div>
+            {data.pixPriceCents ? (
+              <div className="text-sm font-medium text-emerald-400">
+                ou {formatBRL(data.pixPriceCents / 100)} no PIX
+              </div>
             ) : null}
           </div>
 
