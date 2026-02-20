@@ -90,11 +90,12 @@ function computeFinalPriceBrlFromUsd(amountUsd: number): number {
   if (!USD_TO_BRL) {
     console.warn("NEXT_PUBLIC_USD_TO_BRL not set. Using USD amount as BRL.");
   }
-  const base = amountUsd * (USD_TO_BRL ?? 1);
-  const envio = Number(process.env.NEXT_PUBLIC_ENVIO);
-  const taxa = 0.6 * base + envio;
-  const margem = 0.05 * (base + envio + taxa);
-  const subtotal = base + envio + taxa + margem;
+  const rate = USD_TO_BRL ?? 1;
+  const envioUsd = Number(process.env.NEXT_PUBLIC_ENVIO);
+  const baseBrl = (amountUsd + envioUsd) * rate;
+  const taxa = 0.6 * baseBrl;
+  const margem = 0.05 * (baseBrl + taxa);
+  const subtotal = baseBrl + taxa + margem;
   // Absorb MercadoPago 5% fee: divide by 0.95 so net received = subtotal
   const total = subtotal / 0.95;
   // Round up to next multiple of 5, minus 1 cent
