@@ -79,7 +79,7 @@ export function ProductCard({ product }: { product: Product }) {
             </div>
             {product.pixPriceCents ? (
               <div className="text-xs font-medium text-emerald-400">
-                ou {formatBRL(product.pixPriceCents / 100)} no PIX
+                ou {formatBRL(product.pixPriceCents / 100)} no PIX/Boleto
               </div>
             ) : null}
           </div>

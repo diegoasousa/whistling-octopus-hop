@@ -231,7 +231,7 @@ export default function ProductDetailPage() {
             ) : null}
             {data.pixPriceCents ? (
               <div className="text-sm font-medium text-emerald-400">
-                ou {formatBRL(data.pixPriceCents / 100)} no PIX
+                ou {formatBRL(data.pixPriceCents / 100)} no PIX ou Boleto
               </div>
             ) : null}
           </div>
