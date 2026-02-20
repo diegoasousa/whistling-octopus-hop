@@ -64,14 +64,24 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="line-clamp-2 text-sm font-semibold tracking-wide">
             {title}
           </div>
-          <div className="flex items-center justify-between">
-            <div className="text-base font-semibold text-primary">
-              {formatBRL(priceCents / 100)}
+          <div className="space-y-0.5">
+            <div className="flex items-center justify-between">
+              <div className="text-base font-semibold text-primary">
+                {formatBRL(priceCents / 100)}
+              </div>
+              <div className="text-xs text-foreground/60">
+                {product.isPreorder ? "Pré-venda • " : ""}
+                ID: {product.id}
+              </div>
             </div>
-            <div className="text-xs text-foreground/60">
-              {product.isPreorder ? "Pré-venda • " : ""}
-              ID: {product.id}
+            <div className="text-xs text-foreground/50">
+              em até 10x de {formatBRL(priceCents / 100 / 10)}
             </div>
+            {product.pixPriceCents ? (
+              <div className="text-xs font-medium text-emerald-400">
+                ou {formatBRL(product.pixPriceCents / 100)} no PIX
+              </div>
+            ) : null}
           </div>
           {product.variations?.length ? (
             <div className="space-y-1 text-xs text-foreground/70">

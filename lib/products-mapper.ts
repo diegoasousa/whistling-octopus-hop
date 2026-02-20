@@ -86,7 +86,12 @@ const USD_TO_BRL = (() => {
   return undefined;
 })();
 
-function computeFinalPriceBrlFromUsd(amountUsd: number): number {
+// MercadoPago fee rates
+const MP_FEE_INSTALLMENT = 0.1991; // 4.98% + 14.93% (credit card 10x, seller pays)
+const MP_FEE_CREDIT_VISTA = 0.0498; // credit card à vista
+const MP_FEE_PIX = 0.0099; // PIX
+
+function computeCostBrl(amountUsd: number): number {
   if (!USD_TO_BRL) {
     console.warn("NEXT_PUBLIC_USD_TO_BRL not set. Using USD amount as BRL.");
   }
@@ -95,12 +100,31 @@ function computeFinalPriceBrlFromUsd(amountUsd: number): number {
   const baseBrl = (amountUsd + envioUsd) * rate;
   const taxa = 0.6 * baseBrl;
   const margem = 0.05 * (baseBrl + taxa);
-  const subtotal = baseBrl + taxa + margem;
-  // Absorb MercadoPago 5% fee: divide by 0.95 so net received = subtotal
-  const total = subtotal / 0.95;
+  return baseBrl + taxa + margem;
+}
+
+function computeFinalPriceBrlFromUsd(amountUsd: number): number {
+  const subtotal = computeCostBrl(amountUsd);
+  // Absorb MercadoPago installment fee (19.91%): divide by (1 - 0.1991)
+  const total = subtotal / (1 - MP_FEE_INSTALLMENT);
   // Round up to next multiple of 5, minus 1 cent
   const rounded = Math.ceil(total / 5) * 5 - 0.01;
   return Math.max(0, rounded);
+}
+
+/** Price for PIX payment (absorbs only 0.99% fee) */
+export function computePixPrice(installmentPrice: number): number {
+  // From installment price, derive cost then apply PIX fee
+  const cost = installmentPrice * (1 - MP_FEE_INSTALLMENT);
+  const pixTotal = cost / (1 - MP_FEE_PIX);
+  return Math.round(pixTotal * 100) / 100;
+}
+
+/** Price for credit card à vista (absorbs only 4.98% fee) */
+export function computeCreditVistaPrice(installmentPrice: number): number {
+  const cost = installmentPrice * (1 - MP_FEE_INSTALLMENT);
+  const creditTotal = cost / (1 - MP_FEE_CREDIT_VISTA);
+  return Math.round(creditTotal * 100) / 100;
 }
 
 function roundPriceToFiveEnding(amount: number): number {
@@ -218,6 +242,14 @@ function mapProductDto(dto: ProductDTO): Product {
     normalizePriceCents(dto.goodsPrice) ??
     undefined;
 
+  const installmentPrice = typeof priceCents === "number" ? priceCents / 100 : 0;
+  const pixPriceCents = installmentPrice > 0
+    ? Math.round(computePixPrice(installmentPrice) * 100)
+    : undefined;
+  const creditVistaPriceCents = installmentPrice > 0
+    ? Math.round(computeCreditVistaPrice(installmentPrice) * 100)
+    : undefined;
+
   const imageUrl = normalizeString(
     pickString(
       dto.images?.thumb,
@@ -268,6 +300,8 @@ function mapProductDto(dto: ProductDTO): Product {
     title: name,
     description: pickString(dto.description, dto.detail, dto.contents, dto.goodsDesc),
     priceCents,
+    pixPriceCents,
+    creditVistaPriceCents,
     price: typeof roundedBrlAmount === "number" ? roundedBrlAmount : undefined,
     isPreorder: typeof dto.isPreorder === "boolean" ? dto.isPreorder : computedPreorder,
     type: artist ?? typeLabel,

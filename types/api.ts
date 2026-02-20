@@ -25,8 +25,10 @@ export type Product = {
   name?: string;
   artist?: string;
   description?: string;
-  priceCents?: number; // converter para reais: priceCents / 100
-  price?: number; // em reais, legado
+  priceCents?: number; // converter para reais: priceCents / 100 (preço parcelado)
+  price?: number; // em reais, legado (preço parcelado)
+  pixPriceCents?: number; // preço no PIX em centavos
+  creditVistaPriceCents?: number; // preço no cartão à vista em centavos
   isPreorder?: boolean;
   type?: ProductType | string;
   category?: ProductCategory;
