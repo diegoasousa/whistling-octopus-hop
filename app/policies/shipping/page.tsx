@@ -22,9 +22,10 @@ export default function ShippingInfoPage() {
       </Button>
 
       <Card className="rounded-3xl border-border/60 bg-card/60 p-6">
-        <h1 className="text-2xl font-semibold tracking-tight">Tipos de envio</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Como seu pedido chega até você</h1>
         <p className="mt-2 text-sm text-foreground/70">
-          Na Seoul Pulse, todos os envios são internacionais e seguem as regras de importação.
+          Aqui na Seoul Pulse, os produtos vêm diretamente da Coreia até você — e a gente cuida de todo o processo.
+          As taxas de importação já estão incluídas no preço, sem surpresas na entrega.
         </p>
 
         <Separator className="my-6 bg-border/60" />
