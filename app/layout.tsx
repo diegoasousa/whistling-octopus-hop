@@ -3,7 +3,6 @@ import './globals.css';
 import { Providers } from '@/providers/providers';
 import { Header } from '@/components/site/Header';
 import { Footer } from '@/components/site/Footer';
-import { TestBanner } from '@/components/site/TestBanner';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { MetaPixel } from '@/components/analytics/MetaPixel';
 import { Toaster } from '@/components/ui/toaster';
@@ -66,7 +65,6 @@ export default function RootLayout({
         <MetaPixel />
         <Providers>
           <TooltipProvider>
-            <TestBanner />
             <div className="min-h-screen bg-background text-foreground">
               <Header />
               <main className="container py-8">{children}</main>
