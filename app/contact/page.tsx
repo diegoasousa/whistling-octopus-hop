@@ -24,7 +24,9 @@ export default function ContactPage() {
       <Card className="rounded-3xl border-border/60 bg-card/60 p-6">
         <h1 className="text-2xl font-semibold tracking-tight">Fale conosco</h1>
         <p className="mt-2 text-sm text-foreground/70">
-          Precisa de ajuda com seu pedido, rastreio ou dúvidas? Fale com a nossa equipe.
+          Ficou com dúvida? Quer saber sobre o seu pedido? Tá com saudade de um produto esgotado?
+          A gente está aqui. Fala com a Seoul Pulse — respondemos com carinho e o mais rápido possível.
+          Porque fã entende fã.
         </p>
 
         <Separator className="my-6 bg-border/60" />

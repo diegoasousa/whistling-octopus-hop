@@ -80,22 +80,22 @@ export default function HomePage() {
 
           <div className="relative">
             <div className="inline-flex items-center rounded-full border border-border/60 bg-muted/25 px-3 py-1 text-xs font-semibold tracking-widest text-foreground/70">
-              K-POP VIBE
+              OFICIAL &amp; VÁLIDO PARA CHARTS
             </div>
 
             <h1 className="mt-4 max-w-xl text-3xl font-semibold tracking-tight md:text-5xl">
-              Produtos oficiais de <span className="text-primary">K-pop</span> com curadoria e entrega para todo o Brasil.
+              Kpop oficial no Brasil, do jeito que a gente sempre <span className="text-primary">quis.</span>
             </h1>
 
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-foreground/70 md:text-base">
-              Álbuns, lightsticks e photocards selecionados com curadoria direta da cena
-              global. Produtos oficiais, entrega para todo o Brasil.
+              Álbuns, lightsticks e photocards 100% oficiais — válidos para charts, entregues na sua casa.
+              Sem complicação, sem importação manual, só você e o seu grupo favorito.
             </p>
 
             <div className="mt-7 flex flex-col gap-2 sm:flex-row">
               <Button asChild className="h-12 rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90">
                 <Link href="/products">
-                  Explorar produtos <ArrowRight className="ml-2 h-4 w-4" />
+                  Ver produtos <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild variant="secondary" className="h-12 rounded-2xl">
@@ -105,9 +105,9 @@ export default function HomePage() {
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {[
-                { k: "Distribuição global", v: "Envio direto de fornecedores internacionais" },
-                { k: "Pagamento facilitado", v: "Pix, cartão e parcelamento com confirmação imediata" },
-                { k: "Produtos oficiais", v: "Itens válidos para charts e métricas" },
+                { k: "Direto da fonte", v: "Distribuidores oficiais da Coreia. Produto autêntico, válido para charts — sem risco de réplica." },
+                { k: "Pague do jeito que preferir", v: "PIX, boleto ou cartão em até 10x. Sem cartão internacional nem intermediário." },
+                { k: "100% oficial, sempre", v: "Cada álbum, lightstick e photocard é licenciado. Você apoia seu grupo de verdade." },
               ].map((s) => (
                 <div
                   key={s.k}
@@ -269,7 +269,7 @@ export default function HomePage() {
           <div>
             <h2 className="text-xl font-semibold tracking-tight">Saiba mais</h2>
             <p className="mt-1 text-sm text-foreground/70">
-              Tudo o que você precisa para comprar com confiança.
+              Transparência de verdade — sem letras miúdas, sem surpresas.
             </p>
           </div>
         </div>
@@ -277,32 +277,32 @@ export default function HomePage() {
         <div className="grid gap-4 md:grid-cols-3">
           {[
             {
-              title: "Tipos de envio",
+              title: "Como seu pedido chega até você",
               icon: Truck,
               href: "/policies/shipping",
               body: [
-                "Envio internacional direto dos distribuidores.",
-                "Taxas aduaneiras já inclusas no valor final.",
-                "Prazos variam conforme o item e o lote.",
+                "Envio direto da Coreia, sem intermediário.",
+                "Taxas de importação já incluídas no preço — sem cobranças surpresa.",
+                "Prazos variam por lote. A gente te mantém informada por e-mail.",
               ],
             },
             {
-              title: "Políticas da loja",
+              title: "Transparência total, sem letras miúdas",
               icon: ShieldCheck,
               href: "/policies",
               body: [
-                "Regras de compra, prazos e responsabilidades do cliente.",
-                "Dados e CPF corretos garantem o envio sem imprevistos.",
-                "Taxas e rastreio seguem as normas de importação.",
+                "Trocas, cancelamentos e autenticidade explicados de forma simples.",
+                "CPF e dados corretos garantem que seu produto chega certinho.",
+                "Aqui você sabe exatamente o que está comprando.",
               ],
             },
             {
               title: "Formas de pagamento",
               icon: CreditCard,
               body: [
-                "Cartão de crédito em até 12x.",
-                "PIX parcelado em até 4x sem juros.",
-                "Boleto e transferência com desconto à vista.",
+                "Cartão de crédito em até 10x.",
+                "PIX e boleto com desconto à vista.",
+                "Sem precisar de cartão internacional.",
               ],
             },
           ].map((item) => {
@@ -347,15 +347,17 @@ export default function HomePage() {
               SOBRE NÓS
             </div>
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-              Seoul Pulse é a loja de quem leva a cultura K-pop a sério.
+              A Seoul Pulse nasceu de uma frustração muito real — e virou o sonho de toda fã.
             </h2>
             <p className="text-sm leading-relaxed text-foreground/70 md:text-base">
-              Selecionamos cada produto com critério, informamos cada etapa do processo
-              e garantimos uma experiência de compra clara, segura e conectada à cena original.
+              Somos fãs. Sabemos o que é aguardar um comeback, acompanhar os charts, querer
+              que aquele álbum conte de verdade. Por isso criamos uma loja que faz esse processo
+              ser simples — você escolhe, a gente cuida do resto.
             </p>
             <p className="text-sm leading-relaxed text-foreground/70 md:text-base">
-              Nosso foco é entregar uma experiência confiável, com suporte próximo e
-              comunicação clara sobre prazos, pagamentos e envios.
+              Trabalhamos com distribuidores oficiais para garantir que cada produto é autêntico
+              e válido para fins de chart. Nada de réplica, nada de surpresa na entrega.
+              Aqui você é fã e cliente — e a gente leva isso a sério.
             </p>
           </div>
         </Card>
