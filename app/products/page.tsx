@@ -7,7 +7,7 @@ import { SlidersHorizontal, ArrowUpDown, Clock, Sparkles, LayoutGrid } from "luc
 
 import { getProducts } from "@/lib/api";
 import type { Product, ProductsListResponse } from "@/types/api";
-import { getProductPriceCents } from "@/lib/products";
+import { getProductLowestPriceCents } from "@/lib/products";
 import { ProductCard } from "@/components/products/ProductCard";
 import {
   ProductFilters,
@@ -53,9 +53,9 @@ type SortMode = "recent" | "price_asc" | "price_desc";
 function sortItems(items: Product[], sort: SortMode) {
   const copy = [...items];
   if (sort === "price_asc")
-    return copy.sort((a, b) => getProductPriceCents(a) - getProductPriceCents(b));
+    return copy.sort((a, b) => getProductLowestPriceCents(a) - getProductLowestPriceCents(b));
   if (sort === "price_desc")
-    return copy.sort((a, b) => getProductPriceCents(b) - getProductPriceCents(a));
+    return copy.sort((a, b) => getProductLowestPriceCents(b) - getProductLowestPriceCents(a));
   return copy.sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
 }
 

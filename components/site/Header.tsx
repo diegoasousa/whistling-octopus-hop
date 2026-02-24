@@ -58,7 +58,6 @@ export function Header() {
           </span>
           <div className="leading-tight">
             <div className="text-sm font-semibold tracking-wide">Seoul Pulse</div>
-            <div className="text-xs text-foreground/60">storefront K-pop vibe</div>
           </div>
         </Link>
 
