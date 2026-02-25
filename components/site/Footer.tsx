@@ -50,7 +50,7 @@ export function Footer() {
             </div>
             <div className="space-y-3 text-sm text-foreground/70">
               <a
-                href="https://instagram.com/seoulpulse"
+                href="https://www.instagram.com/seoulpulseshop/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-foreground transition-colors"
@@ -60,18 +60,18 @@ export function Footer() {
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
                 </svg>
-                @seoulpulse no Instagram
+                @seoulpulseshop no Instagram
               </a>
               <a
-                href="https://tiktok.com/@seoulpulse"
+                href="https://www.tiktok.com/@seoulpulseshp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-foreground transition-colors"
               >
                 <svg className="h-4 w-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.45a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
                 </svg>
-                @seoulpulse no TikTok
+                @seoulpulseshp no TikTok
               </a>
             </div>
             <p className="text-xs text-foreground/50">
@@ -82,8 +82,17 @@ export function Footer() {
 
         <Separator className="my-10 bg-border/60" />
 
-        <div className="text-xs text-foreground/55">
-          <span>© {new Date().getFullYear()} Seoul Pulse.</span>
+        <div className="flex flex-col gap-1 text-xs text-foreground/55">
+          <a
+            href="mailto:contato@seoulpulse.com.br"
+            className="hover:text-foreground transition-colors w-fit"
+          >
+            contato@seoulpulse.com.br
+          </a>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+            <span>© {new Date().getFullYear()} Seoul Pulse.</span>
+            <span className="text-foreground/40">Seoul Pulse (MEI) · CNPJ 65.292.275/0001-91</span>
+          </div>
         </div>
       </div>
     </footer>
