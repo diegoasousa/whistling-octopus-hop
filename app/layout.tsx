@@ -63,6 +63,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className="dark" style={{ colorScheme: 'dark' }}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "OnlineStore",
+              "name": "Seoul Pulse",
+              "legalName": "Seoul Pulse MEI",
+              "url": "https://www.seoulpulse.com.br",
+              "logo": "https://www.seoulpulse.com.br/seoul-pulse-logo.png",
+              "email": "contato@seoulpulse.com.br",
+              "description": "Loja de produtos K-pop oficiais no Brasil. Álbuns, lightsticks e photocards 100% oficiais, válidos para charts.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "BR",
+              },
+              "sameAs": [
+                "https://www.instagram.com/seoulpulseshop/",
+                "https://www.tiktok.com/@seoulpulseshp",
+              ],
+            }),
+          }}
+        />
+      </head>
       <body>
         <GoogleAnalytics />
         <MetaPixel />

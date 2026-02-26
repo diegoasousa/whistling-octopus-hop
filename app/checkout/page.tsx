@@ -450,6 +450,10 @@ export default function CheckoutPage() {
               </>
             )}
           </Button>
+
+          <p className="mt-3 text-center text-[11px] text-foreground/50">
+            🔒 Compra segura · Seoul Pulse (MEI) · CNPJ 65.292.275/0001-91
+          </p>
         </form>
 
         {mpPublicKey && orderId && !isCreatingOrder ? (

@@ -136,6 +136,10 @@ export default function CartPage() {
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
 
+        <p className="mt-3 text-center text-[11px] text-foreground/50">
+          🔒 Compra segura · Seoul Pulse (MEI) · CNPJ 65.292.275/0001-91
+        </p>
+
         <Button asChild variant="secondary" className="mt-2 h-11 w-full rounded-2xl">
           <Link href="/products">Continuar comprando</Link>
         </Button>

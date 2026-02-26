@@ -12,6 +12,7 @@ import {
   Truck,
   ShieldCheck,
   CreditCard,
+  Mail,
 } from "lucide-react";
 import type { ComponentType } from "react";
 
@@ -359,6 +360,30 @@ export default function HomePage() {
               e válido para fins de chart. Nada de réplica, nada de surpresa na entrega.
               Aqui você é fã e cliente — e a gente leva isso a sério.
             </p>
+
+            <div
+              className="mt-2 max-w-sm rounded-2xl p-5 space-y-1"
+              style={{
+                background: "#251D34",
+                border: "1px solid rgba(250,66,186,0.3)",
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-[#34D399] text-base leading-none">✓</span>
+                <span className="text-sm font-semibold text-white">Empresa Brasileira Verificada</span>
+              </div>
+              <div className="pl-6 space-y-0.5 text-[13px] text-white/70">
+                <div>Seoul Pulse (MEI)</div>
+                <div>CNPJ: 65.292.275/0001-91</div>
+                <a
+                  href="mailto:contato@seoulpulse.com.br"
+                  className="flex items-center gap-1.5 hover:text-white transition-colors w-fit"
+                >
+                  <Mail className="h-3.5 w-3.5 shrink-0" />
+                  contato@seoulpulse.com.br
+                </a>
+              </div>
+            </div>
           </div>
         </Card>
 
