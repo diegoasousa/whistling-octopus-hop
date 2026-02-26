@@ -45,20 +45,8 @@ export default function StorePoliciesPage() {
               PRAZOS E ENVIO
             </div>
             <div>
-              Após a compra, o pedido pode ser marcado como "Embalado" em até 7 dias corridos.
-              Para importados, o rastreio costuma ser enviado de 7 a 15 dias úteis após esse status.
-              Em pronta-entrega, o despacho acontece em até 7 dias úteis.
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <div className="text-xs font-semibold tracking-widest text-foreground/60">
-              TAXAS E IMPORTAÇÃO
-            </div>
-            <div>
-              Importados podem sofrer taxas aduaneiras. O pagamento é obrigatório e normalmente
-              informado no rastreio, com prazo limitado para quitação. A não quitação pode gerar
-              devolução e custos extras.
+            Aqui cada pedido é conferido com carinho antes de ser enviado! 
+            🩷 Após a confirmação, seu item passa pelo nosso processo de importação e controle de qualidade, sendo despachado em até 15 a 30 dias úteis.
             </div>
           </div>
 
@@ -78,8 +66,8 @@ export default function StorePoliciesPage() {
               RASTREIO
             </div>
             <div>
-              Acompanhe o código com frequência e vincule o CPF no ambiente "Minhas importações"
-              dos Correios quando solicitado. Avisos de taxas e pendências são enviados por lá.
+              Após o despacho do seu pedido, você receberá o código de rastreio nacional diretamente por e-mail ou WhatsApp. 
+              Acompanhe a entrega pelo site dos Correios ou pelo app Melhor Rastreio. 📦
             </div>
           </div>
         </div>

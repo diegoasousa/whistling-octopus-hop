@@ -107,7 +107,7 @@ export default function HomePage() {
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {[
                 { k: "Direto da fonte", v: "Distribuidores oficiais da Coreia. Produto autêntico, válido para charts — sem risco de réplica." },
-                { k: "Pague do jeito que preferir", v: "PIX, boleto ou cartão em até 10x. Sem cartão internacional nem intermediário." },
+                { k: "Pague do jeito que preferir", v: "PIX, boleto ou cartão em até 10x. Sem cartão internacional" },
                 { k: "100% oficial, sempre", v: "Cada álbum, lightstick e photocard é licenciado. Você apoia seu grupo de verdade." },
               ].map((s) => (
                 <div
@@ -282,7 +282,7 @@ export default function HomePage() {
               icon: Truck,
               href: "/policies/shipping",
               body: [
-                "Envio direto da Coreia, sem intermediário.",
+                "Envio direto da Coreia.",
                 "Taxas de importação já incluídas no preço — sem cobranças surpresa.",
                 "Prazos variam por lote. A gente te mantém informada por e-mail.",
               ],

@@ -35,8 +35,8 @@ export default function PrivacyPolicyPage() {
               IDENTIFICAÇÃO
             </div>
             <div>
-              Seoul Pulse — CNPJ 00.000.000/0000-00. Endereço: Rua Exemplo, 123, São Paulo/SP.
-              Telefone: (11) 99999-9999. Email: contato@seoulpulse.com.br.
+              Seoul Pulse — CNPJ 65.292.275/0001-91. Endereço: Avenida São José, 1009, Apto 41 São José dos Campos/SP.
+              Email: contato@seoulpulse.com.br.
             </div>
           </div>
 
